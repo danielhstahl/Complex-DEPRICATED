@@ -1,3 +1,7 @@
-unix:
+unix (static):
 g++ -O3 -std=c++11 -o complex.o -c Complex.cpp
 ar rcs libComplex.a complex.o
+
+unix (shared):
+g++ -O3 -std=c++11 -fpic -c Complex.cpp -o Complex.o
+g++ -shared -o libComplex.so Complex.o

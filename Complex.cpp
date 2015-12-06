@@ -16,15 +16,28 @@ Complex Complex::multiply(double c) const {
 	//Complex plac=Complex(c*real, c*im);
 	return Complex(c*real, c*im);
 }
-Complex Complex::exp() {
+Complex Complex::exp() const {
 	//Complex plac=Complex(std::exp(real)*std::cos(im), std::exp(real)*std::sin(im));
 	return Complex(std::exp(real)*std::cos(im), std::exp(real)*std::sin(im));
 }
-Complex Complex::log() {
+Complex Complex::log() const{
 	double modulus=std::sqrt(real*real+im*im);
 	//Complex plac=Complex(std::log(modulus), std::atan2(im, real));
 	return Complex(std::log(modulus), std::atan2(im, real));
 }
+Complex log(const Complex &val){
+	return val.log();
+}
+Complex exp(const Complex &val){
+	return val.exp();
+}
+Complex sin(const Complex &val){
+	return val.multiply(Complex(0, 1)).exp().subtract(val.multiply(Complex(0, -1)).exp()).divide(Complex(0, 2));
+}
+Complex cos(const Complex &val){
+	return val.multiply(Complex(0, 1)).exp().subtract(val.multiply(Complex(0, -1)).exp()).divide(2);
+}
+
 Complex Complex::add(const Complex &c) const {
 	//Complex plac=Complex(real+c.getReal(), im+c.getIm());
 	return Complex(real+c.getReal(), im+c.getIm());
@@ -51,7 +64,7 @@ Complex Complex::divide(const Complex &c) const {
 Complex Complex::divide(double c) const {
 	return Complex(real/c, im/c);
 }
-Complex Complex::power(double exponent) const {
+Complex Complex::pow(double exponent) const {
 	double modulus=std::sqrt(real*real+im*im);
 	double arg=std::atan2(im, real);
 	double log_re=std::log(modulus);
@@ -61,7 +74,12 @@ Complex Complex::power(double exponent) const {
 	double modulus_ans=std::exp(x_log_re);
 	return Complex(modulus_ans*std::cos(x_log_im), modulus_ans*std::sin(x_log_im));
 }
-
+Complex pow(const Complex& value, double exponent) {
+	return value.pow(exponent);
+}
+Complex sqrt(const Complex& value)  {
+	return value.pow(.5);
+}
 double Complex::getReal() const {
 	return real;
 }
@@ -99,7 +117,7 @@ Complex operator/(const Complex &c1, const Complex &c2)
 }
 Complex operator/(double c1, const Complex &c2)
 {
-    return c2.power(-1).multiply(c1);
+    return c2.pow(-1).multiply(c1);
 }
 Complex operator/(const Complex &c1, double c2)
 {
