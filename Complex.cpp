@@ -8,6 +8,9 @@ Complex::Complex(double x, double y) {
 	real=x;
 	im=y;
 }
+Complex Complex::conj() const{
+	return Complex(real, -im);
+}
 Complex Complex::multiply(const Complex &c) const {
 	//Complex plac=Complex(real*c.getReal()-im*c.getIm(), im*c.getReal()+real*c.getIm());
 	return Complex(real*c.getReal()-im*c.getIm(), im*c.getReal()+real*c.getIm());

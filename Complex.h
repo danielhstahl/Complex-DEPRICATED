@@ -34,7 +34,7 @@ class Complex {
 		Complex pow(double) const;
 		Complex divide(const Complex&) const;
 		Complex divide(double) const;
-
+		Complex conj() const;
 		double getReal() const;
 		double getIm() const;
 
