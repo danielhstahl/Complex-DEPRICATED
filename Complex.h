@@ -22,6 +22,7 @@ class Complex {
 		friend Complex operator*(double c1, const Complex &c2);
 		friend Complex operator*(const Complex &c1, double c2);
 		Complex();
+		void setValues(double, double);
 		Complex(double, double);
 		Complex multiply(const Complex&) const;
 		Complex multiply(double) const;

@@ -8,6 +8,11 @@ Complex::Complex(double x, double y) {
 	real=x;
 	im=y;
 }
+
+void Complex::setValues(double x, double y){
+	real=x;
+	im=y;
+}
 Complex Complex::conj() const{
 	return Complex(real, -im);
 }
